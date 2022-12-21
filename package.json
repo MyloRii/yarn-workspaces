@@ -10,6 +10,7 @@
   },
   "workspaces": [
     "frontend",
-    "backend"
+    "backend",
+    "mobile"
   ]
 }
