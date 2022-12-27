@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - yarn install
+  test:
+    commands:
+      - yarn test
+
+reports:
+  test-report:
+    files:
+      - "./frontend/results.xml"
+    file-format: "JUNITXML"
