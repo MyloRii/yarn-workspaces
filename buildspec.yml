@@ -1,14 +1,10 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      node: 14
+  build:
     commands:
-      - yarn install
-  test:
-    commands:
-      - yarn test
+      - docker build -t autotests .
+      - docker run autotests yarn test
 
 reports:
   test-report:
