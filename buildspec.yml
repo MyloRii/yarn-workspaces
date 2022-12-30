@@ -4,10 +4,13 @@ phases:
   build:
     commands:
       - docker build -t autotests .
-      - docker run autotests yarn test
+  post_build:
+    commands:
+      - docker run --name pw-tests autotests:latest yarn test
+      - docker cp pw-tests:/automation/frontend/results.xml ./results.xml
 
 reports:
   test-report:
     files:
-      - "./frontend/results.xml"
+      - "./results.xml"
     file-format: "JUNITXML"

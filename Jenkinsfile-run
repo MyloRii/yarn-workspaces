@@ -1,0 +1,22 @@
+pipeline{
+	agent any
+	stages{
+		stage("Pull Latest Image"){ 
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                        sh "docker pull mylorii/yarn-workspaces"
+                    }
+                }
+                script {
+                    sh "docker run --name sample mylorii/yarn-workspaces yarn test"
+                }
+            }
+		}
+	}
+    post {
+        always {
+            sh "docker rm -f sample"
+        }
+    }
+}
